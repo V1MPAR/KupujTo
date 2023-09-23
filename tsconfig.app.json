@@ -6,7 +6,8 @@
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "projects/kupujto/src/main.ts",
+    "projects/kupujto/src/polyfills.ts"
   ],
   "include": [
     "src/**/*.d.ts"
