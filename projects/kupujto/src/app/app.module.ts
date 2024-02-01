@@ -11,11 +11,13 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTreeModule } from "@angular/material/tree";
 import { ProductItemModule } from "../../../ui/src/lib/product-item/product-item.module";
+import { ProductDetailsDialogComponent } from './shared/dialogs/product-details-dialog/product-details-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
+    ProductDetailsDialogComponent,
   ],
   imports: [
     BrowserModule,
