@@ -1,0 +1,11 @@
+<div class="product-item">
+  <img class="product-item__img" [src]="product.image" [alt]="product.name" />
+  <h3>{{ product.name }}</h3>
+  <div class="product-item__price">
+    <span *ngIf="product.promoPercentValue">{{ product.promoPercentValue }}%</span>
+    <p *ngIf="product.promoPercentValue"><small>{{ product.price | number }} zł</small>{{ product.promoPrice | number }} zł</p>
+    <p *ngIf="!product.promoPercentValue">{{ product.price | number }} zł</p>
+  </div>
+  <lib-primary-button (click)="addToCart(product)">Dodaj do koszyka</lib-primary-button>
+  <lib-secondary-button (click)="viewProduct(product)">Zobacz produkt</lib-secondary-button>
+</div>

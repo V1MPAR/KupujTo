@@ -1,0 +1,4 @@
+<h2>Kategoria {{ category | uppercase }}</h2>
+<div class="grid-4 gap-20">
+  <lib-product-item *ngFor="let product of products" [product]="product"></lib-product-item>
+</div>
