@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProductModel, ProductService } from "../../../../../kupujto/src/app/shared/services/product.service";
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDetailsDialogComponent } from "../../../../../kupujto/src/app/shared/dialogs/product-details-dialog/product-details-dialog.component";
 
 @Component({
   selector: 'lib-product-item',
@@ -10,14 +12,18 @@ export class ProductItemComponent {
 
   @Input() product!: ProductModel;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private dialog: MatDialog) { }
 
   addToCart(product: ProductModel) {
     console.log('Add to cart');
   }
 
   viewProduct(product: ProductModel) {
-    console.log('View product');
+    const dialog = this.dialog.open(ProductDetailsDialogComponent, {
+      data: {
+        product
+      }
+    });
   }
 
 }
