@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from "@angular/material/tree";
 import { FlatTreeControl } from "@angular/cdk/tree";
+import { BasketItemModel, BasketService } from "../../shared/services/basket.service";
 
 interface CategoryNode {
   name: string;
@@ -102,9 +103,18 @@ export class MainLayoutComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() {
+  basketItems: BasketItemModel[] = this.basketService.getBasketItems()
+
+  constructor(private basketService: BasketService) {
     this.dataSource.data = TREE_DATA;
+    this.basketService.basketItems.subscribe((basketItems => {
+      this.basketItems = basketItems;
+    }));
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+
+  updateBasketItems() {
+    this.basketItems = this.basketService.getBasketItems();
+  }
 }

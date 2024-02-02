@@ -1,8 +1,11 @@
 mat-toolbar {
+  display: flex;
+  justify-content: space-between;
   a {
     color: black;
     text-decoration: none;
   }
+  padding: 50px 25px;
 }
 aside {
   max-width: 200px;

@@ -1,5 +1,10 @@
 <mat-toolbar>
   <a routerLink="/">KupujTo</a>
+  <button mat-icon-button [matBadge]="basketItems.length" matBadgePosition="after" matBadgeColor="accent" [matMenuTriggerFor]="beforeMenu" (click)="updateBasketItems()"><mat-icon>shopping_cart</mat-icon></button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <h3>Twój koszyk</h3>
+    <lib-basket-item [basketItem]="item" *ngFor="let item of basketItems"></lib-basket-item>
+  </mat-menu>
 </mat-toolbar>
 <div class="flex-row">
   <aside class="categories">

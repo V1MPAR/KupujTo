@@ -4,6 +4,7 @@ import { MainRouting } from './main.routing';
 import { CommonModule } from "@angular/common";
 import { MainComponent } from './containers/main/main.component';
 import { ProductItemModule } from "../../../../ui/src/lib/product-item/product-item.module";
+import { BasketItemModule } from "../../../../ui/src/lib/basket-item/basket-item.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { ProductItemModule } from "../../../../ui/src/lib/product-item/product-i
   imports: [
     MainRouting,
     CommonModule,
-    ProductItemModule
+    ProductItemModule,
+    BasketItemModule
   ],
   providers: [],
   bootstrap: [MainComponent]

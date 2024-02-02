@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductService } from "../../../shared/services/product.service";
+import { ProductModel, ProductService } from "../../../shared/services/product.service";
 
 @Component({
   selector: 'app-main',
@@ -7,6 +7,8 @@ import { ProductService } from "../../../shared/services/product.service";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
+
+  public products: ProductModel[] = this.getRandomProducts(4)
 
   constructor(private productService: ProductService) { }
 

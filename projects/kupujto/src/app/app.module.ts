@@ -11,13 +11,18 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTreeModule } from "@angular/material/tree";
 import { ProductItemModule } from "../../../ui/src/lib/product-item/product-item.module";
-import { ProductDetailsDialogComponent } from './shared/dialogs/product-details-dialog/product-details-dialog.component';
+import {
+  ProductDetailsDialogComponent
+} from './shared/dialogs/product-details-dialog/product-details-dialog.component';
+import { MatMenuModule } from "@angular/material/menu";
+import { BasketItemModule } from "../../../ui/src/lib/basket-item/basket-item.module";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatBadgeModule } from "@angular/material/badge";
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    ProductDetailsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,12 @@ import { ProductDetailsDialogComponent } from './shared/dialogs/product-details-
     MatButtonModule,
     MatSidenavModule,
     MatTreeModule,
-    ProductItemModule
+    MatSnackBarModule,
+    ProductItemModule,
+    BasketItemModule,
+    MatMenuModule,
+    ProductDetailsDialogComponent,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
