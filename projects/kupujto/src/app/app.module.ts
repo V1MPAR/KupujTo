@@ -18,11 +18,14 @@ import { MatMenuModule } from "@angular/material/menu";
 import { BasketItemModule } from "../../../ui/src/lib/basket-item/basket-item.module";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatBadgeModule } from "@angular/material/badge";
+import { ButtonModule } from "../../../ui/src/lib/button/button.module";
+import { OrderLayoutComponent } from './layouts/order-layout/order-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
+    OrderLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { MatBadgeModule } from "@angular/material/badge";
     ProductItemModule,
     BasketItemModule,
     MatMenuModule,
+    ButtonModule,
     ProductDetailsDialogComponent,
     MatBadgeModule
   ],

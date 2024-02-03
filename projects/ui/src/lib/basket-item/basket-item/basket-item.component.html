@@ -1,1 +1,10 @@
-{{ basketItem | json }}
+<div class="basket-item">
+  <img class="basket-item__img" src="{{ basketItem.product.image }}" alt="{{ basketItem.product.name }}" />
+  <div class="basket-item__info">
+    <h3>{{ basketItem.product.name }}</h3>
+    <p>{{ basketItem.product.price | number }} zł</p>
+  </div>
+  <div>
+    <button mat-icon-button (click)="removeFromBasket(basketItem, $event)"><mat-icon>close</mat-icon></button>
+  </div>
+</div>

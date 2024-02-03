@@ -7,6 +7,18 @@ mat-toolbar {
   }
   padding: 50px 25px;
 }
+
+.mat-menu-panel {
+  width: 500px; /* Możesz dostosować tę wartość do swoich potrzeb */
+}
+
+::ng-deep {
+  .mat-mdc-menu-content {
+    padding: 0 !important;
+  }
+}
+
+::ng-deep {.mat-menu-panel.basket { width: 400px; } }
 aside {
   max-width: 200px;
   width: 100%;

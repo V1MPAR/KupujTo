@@ -52,6 +52,16 @@ export class BasketService {
     }
   }
 
+  removeFromBasket(product: ProductModel) {
+    const basketItems = this.getBasketItems();
+    const basketItemIndex = basketItems.findIndex(item => item.product.id === product.id);
+    if (basketItemIndex > -1) {
+      basketItems.splice(basketItemIndex, 1);
+      localStorage.setItem('basket', JSON.stringify(basketItems));
+      this.basketItems.next(basketItems);
+    }
+  }
+
   private initBasket() {
     localStorage.setItem('basket', JSON.stringify([]));
   }

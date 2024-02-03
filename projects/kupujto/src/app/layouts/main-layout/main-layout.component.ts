@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from "@angular/material/tree";
 import { FlatTreeControl } from "@angular/cdk/tree";
 import { BasketItemModel, BasketService } from "../../shared/services/basket.service";
+import { Router } from "@angular/router";
 
 interface CategoryNode {
   name: string;
@@ -105,7 +106,7 @@ export class MainLayoutComponent {
 
   basketItems: BasketItemModel[] = this.basketService.getBasketItems()
 
-  constructor(private basketService: BasketService) {
+  constructor(private basketService: BasketService, private router: Router) {
     this.dataSource.data = TREE_DATA;
     this.basketService.basketItems.subscribe((basketItems => {
       this.basketItems = basketItems;
@@ -116,5 +117,9 @@ export class MainLayoutComponent {
 
   updateBasketItems() {
     this.basketItems = this.basketService.getBasketItems();
+  }
+
+  goToOrder() {
+    this.router.navigate(['/zamowienie']).then();
   }
 }
