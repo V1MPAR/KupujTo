@@ -62,6 +62,11 @@ export class BasketService {
     }
   }
 
+  clearBasket() {
+    localStorage.setItem('basket', JSON.stringify([]));
+    this.basketItems.next([]);
+  }
+
   private initBasket() {
     localStorage.setItem('basket', JSON.stringify([]));
   }

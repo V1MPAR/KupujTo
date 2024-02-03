@@ -1,0 +1,12 @@
+<div class="order-detail-item">
+  <div class="order-detail-item__info">
+    <img class="img" src="{{ basketItem.product.image }}" alt="{{ basketItem.product.name }}" />
+    <div class="info">
+      <h3>{{ basketItem.product.name }}</h3>
+      <p>{{ basketItem.product.price | number }} zł</p>
+    </div>
+  </div>
+  <div>
+    <button mat-icon-button (click)="removeFromBasket(basketItem, $event)"><mat-icon>close</mat-icon></button>
+  </div>
+</div>

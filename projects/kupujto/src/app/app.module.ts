@@ -20,12 +20,14 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatBadgeModule } from "@angular/material/badge";
 import { ButtonModule } from "../../../ui/src/lib/button/button.module";
 import { OrderLayoutComponent } from './layouts/order-layout/order-layout.component';
+import { PaymentDialogComponent } from './shared/dialogs/payment-dialog/payment-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
     OrderLayoutComponent,
+    PaymentDialogComponent,
   ],
   imports: [
     BrowserModule,

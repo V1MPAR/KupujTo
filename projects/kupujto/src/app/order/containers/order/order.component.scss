@@ -1,0 +1,65 @@
+.order-details {
+  margin: 20px 0;
+  max-width: 60%;
+  width: 100%;
+}
+
+.order-summary {
+  margin: 20px 0;
+}
+
+.order-row {
+  display: flex;
+  gap: 20px;
+  min-height: 500px;
+}
+
+.delivery {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  &__client-info {
+    width: 100%;
+    max-width: 50%;
+    div {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+  &__method {
+    width: 100%;
+    max-width: 50%;
+    mat-radio-group {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.payment {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  mat-radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.success {
+  color: #16a085;
+}
+
+.wait {
+  color: #7f8c8d;
+}
+
+.rejected {
+  color: #c0392b;
+}
