@@ -80,7 +80,7 @@
         <div class="delivery__method">
           <h3>Wybierz metodę dostawy</h3>
           <mat-radio-group formControlName="method">
-            <mat-radio-button value="kurier" checked>Kurier (odbiór do 24h)</mat-radio-button>
+            <mat-radio-button value="kurier" [checked]="true">Kurier (odbiór do 24h)</mat-radio-button>
             <mat-radio-button value="pocztapolska">Poczta Polska (odbiór do 5 dni roboczych)</mat-radio-button>
           </mat-radio-group>
         </div>
