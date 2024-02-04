@@ -22,6 +22,9 @@ export class BasketService {
   }
 
   getBasketItems(): BasketItemModel[] {
+    if (!localStorage.getItem('basket')) {
+      this.initBasket();
+    }
     return JSON.parse(localStorage.getItem('basket')!);
   }
 
