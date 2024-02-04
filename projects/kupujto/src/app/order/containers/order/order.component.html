@@ -12,15 +12,15 @@
           <h3>Podsumowanie zamówienia</h3>
           <div class="order-summary-item">
             <span>Suma: </span>
-            <strong>{{totalPrice | number}} zł</strong>
+            <strong>{{totalPrice | number:'1.2-2'}} zł</strong>
           </div>
           <div class="order-summary-item">
             <span>Koszt dostawy: </span>
-            <strong>od {{deliveryCost | number}} zł</strong>
+            <strong>{{deliveryCost | number:'1.2-2'}} zł</strong>
           </div>
           <div class="order-summary-item">
             <span>Do zapłaty: </span>
-            <strong>od {{totalPrice + deliveryCost | number}} zł</strong>
+            <strong>{{totalPrice + deliveryCost | number:'1.2-2'}} zł</strong>
           </div>
         </div>
       </div>
@@ -113,8 +113,15 @@
     <p *ngIf="order != null">Twoje zamówienie otrzymało numer <strong>{{ order!.id }}</strong></p>
     <p>Na podany adres e-mail otrzymasz potwierdzenie zamówienia</p>
     <p>Status Twojej płatności to: <strong [ngClass]="{'success': paymentStatus === 'SUCCESS', 'wait': paymentStatus === 'WAIT', 'rejected': paymentStatus === 'REJECTED'}">{{ getPaymentStatus(paymentStatus) }}</strong></p>
-    <button mat-flat-button *ngIf="paymentStatus === 'REJECTED'" color="accent">Ponów płatność</button>
-    <div>
+    <button mat-flat-button *ngIf="order != null && (order!.payment.method !== 'poczta' && paymentStatus !== 'SUCCESS')" color="accent" (click)="rePay()">Ponów płatność</button>
+    <p *ngIf="order != null && order!.payment.method === 'poczta'">
+      Dane do przelewu:<br />
+      Odbiorca: <strong>KupujTo sp. z o.o.</strong><br />
+      Numer konta bankowego: <strong>97 8369 0008 1536 2244 4024 1391</strong><br />
+      Tytuł przelewu: <strong>Zamówienie nr {{ order!.id }}</strong><br />
+      Kwota: <strong>{{ order!.totalPrice + order!.deliveryCost | number:'1.2-2' }} zł</strong>
+    </p>
+    <div style="margin-top: 20px;">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="goToHome()">Przejdź do strony głównej</button>
     </div>

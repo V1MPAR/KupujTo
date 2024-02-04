@@ -30,12 +30,16 @@ export class BasketService {
     const basketItem = basketItems.find(item => item.product.id === product.id);
     if (basketItem) {
       basketItem.quantity += 1;
-      basketItem.totalPrice = basketItem.product.price * basketItem.quantity;
+      if (basketItem.product.promoPrice != null) {
+        basketItem.totalPrice = basketItem.product.promoPrice * basketItem.quantity;
+      } else {
+        basketItem.totalPrice = basketItem.product.price * basketItem.quantity;
+      }
     } else {
       basketItems.push({
         product,
         quantity: 1,
-        totalPrice: product.price
+        totalPrice: product.promoPrice != null ? product.promoPrice : product.price
       });
     }
     localStorage.setItem('basket', JSON.stringify(basketItems));

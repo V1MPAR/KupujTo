@@ -1,1 +1,9 @@
-<p>payment-dialog works!</p>
+<h2 mat-dialog-title>Symulacja płatności online</h2>
+<mat-dialog-content class="mat-typography payment">
+  <p>Do zapłaty: <strong>{{ order.sum | number:'1.2-2' }} zł</strong></p>
+  <p>Pozostały czas do podjęcia decyzji: <strong>{{ seconds }}s</strong></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button class="reject" (click)="reject()">Odrzuć płatność</button>
+  <button mat-button class="accept" (click)="pay()">Płacę {{ order.sum | number:'1.2-2' }} zł</button>
+</mat-dialog-actions>

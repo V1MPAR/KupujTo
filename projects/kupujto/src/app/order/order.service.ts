@@ -26,6 +26,7 @@ export interface Order {
   status: PaymentStatus;
   totalPrice: number;
   deliveryCost: number;
+  sum: number;
   basketItems: BasketItemModel[];
 }
 
@@ -48,6 +49,13 @@ export class OrderService {
     const orders = this.getOrders();
     order.id = this.generateUniqueId();
     orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+  }
+
+  updateOrderStatus(order: Order) {
+    const orders = this.getOrders();
+    const index = orders.findIndex(o => o.id === order.id);
+    orders[index] = order;
     localStorage.setItem('orders', JSON.stringify(orders));
   }
 

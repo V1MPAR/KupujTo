@@ -2,7 +2,7 @@
   <img class="basket-item__img" src="{{ basketItem.product.image }}" alt="{{ basketItem.product.name }}" />
   <div class="basket-item__info">
     <h3>{{ basketItem.product.name }}</h3>
-    <p>{{ basketItem.product.price | number }} zł</p>
+    <p>{{ (basketItem.product.promoPrice != null ? basketItem.product.promoPrice : basketItem.product.price) | number:'1.2-2' }} zł</p>
   </div>
   <div>
     <button mat-icon-button (click)="removeFromBasket(basketItem, $event)"><mat-icon>close</mat-icon></button>

@@ -27,9 +27,7 @@ export class ProductItemComponent {
 
   viewProduct(product: ProductModel) {
     const dialog = this.dialog.open(ProductDetailsDialogComponent, {
-      data: {
-        product
-      }
+      data: product
     });
   }
 

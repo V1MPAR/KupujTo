@@ -1,0 +1,20 @@
+.accept {
+  background: #16a085;
+  color: #fff;
+}
+
+.reject {
+  background: #c0392b;
+  color: #fff;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  p {
+    font-size: 24px;
+  }
+}

@@ -4,6 +4,8 @@ import { BasketItemModel, BasketService } from "../../../shared/services/basket.
 import { Router } from "@angular/router";
 import { Order, OrderService, PaymentStatus } from "../../order.service";
 import { MatStepper } from "@angular/material/stepper";
+import { MatDialog } from "@angular/material/dialog";
+import { PaymentDialogComponent } from "../../../shared/dialogs/payment-dialog/payment-dialog.component";
 
 @Component({
   selector: 'app-order',
@@ -45,7 +47,7 @@ export class OrderComponent {
   paymentStatus: PaymentStatus = PaymentStatus.WAIT;
   order: Order | null = null;
 
-  constructor(private formBuilder: FormBuilder, private basketService: BasketService, private orderService: OrderService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private basketService: BasketService, private orderService: OrderService, private router: Router, private dialog: MatDialog) {
     this.basketService.basketItems.subscribe((basketItems => {
       this.basketItems = basketItems;
       this.totalPrice = this.basketItems.reduce((acc, item) => acc + item.totalPrice, 0)
@@ -81,13 +83,21 @@ export class OrderComponent {
         status: this.paymentStatus,
         totalPrice: this.totalPrice,
         deliveryCost: this.deliveryCost,
+        sum: this.totalPrice + this.deliveryCost,
         basketItems: this.basketItems
       };
-      this.orderService.addOrder(this.order);
-      stepper.next();
-      this.basketService.clearBasket();
-      this.IsFinishEditable = false;
-      this.isFinishCompleted = true;
+      if (this.paymentForm.value.method === 'online') {
+        this.dialog.open(PaymentDialogComponent, {
+          data: this.order
+        })
+          .afterClosed().subscribe((result: PaymentStatus) => {
+            this.order!.status = result;
+            this.paymentStatus = result;
+            this.endOrder(stepper);
+          })
+      } else {
+        this.endOrder(stepper);
+      }
     }
   }
 
@@ -104,5 +114,24 @@ export class OrderComponent {
       case PaymentStatus.REJECTED:
         return 'odrzucona przez użytkownika'
     }
+  }
+
+  rePay(): void {
+    this.dialog.open(PaymentDialogComponent, {
+      data: this.order
+    })
+      .afterClosed().subscribe((result: PaymentStatus) => {
+        this.order!.status = result;
+        this.paymentStatus = result;
+        this.orderService.updateOrderStatus(this.order!);
+      })
+  }
+
+  private endOrder(stepper: MatStepper): void {
+    this.orderService.addOrder(this.order!);
+    stepper.next();
+    this.basketService.clearBasket();
+    this.IsFinishEditable = false;
+    this.isFinishCompleted = true;
   }
 }
